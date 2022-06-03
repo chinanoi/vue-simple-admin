@@ -22,5 +22,6 @@ const EnvConfig = {
 export default {
     env: 'dev',
     mock: 'true',
+    namespace: 'VUE_CUSTOM_MANAGER_SYSTEM',
     ...EnvConfig[env]
 };
