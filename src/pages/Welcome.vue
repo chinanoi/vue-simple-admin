@@ -1,6 +1,6 @@
 <template>
-  <h1>欢迎来到我的系统</h1>
-  <h3 @click="goLogin">去登陆</h3>
+  <h1>欢迎来到我的系统-{{msg}}</h1>
+  <el-button @click="goLogin">去登陆</el-button>
 </template>
 
 <script>
@@ -12,6 +12,12 @@ export default {
     }
   }
 }
+</script>
+<script setup>
+import {defineProps} from 'vue'
+defineProps({
+    msg:String
+})
 </script>
 
 <style scoped>

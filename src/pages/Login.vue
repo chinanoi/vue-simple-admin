@@ -1,11 +1,14 @@
 <template>
   <h1>欢迎来到登录页面</h1>
-  <h3 @click="goWelcome">返回首页</h3>
+  <Welcome msg="zhangsan" />
+  <el-button @click="goWelcome">返回首页</el-button>
 </template>
 
 <script>
+import Welcome from './Welcome.vue'
 export default {
   name: 'login',
+  components:{Welcome},
   methods:{
     goWelcome(){
       this.$router.push('/welcome')
