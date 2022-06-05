@@ -1,15 +1,25 @@
 <template>
-  <h1>欢迎来到登录页面</h1>
-  <Welcome msg="zhangsan" />
-  <el-button @click="goWelcome">返回首页</el-button>
-    <el-button @click="login">登录</el-button>
+  <div class="login-wrapper">
+      <div class="modal">
+          <el-form>
+              <div class="title">登录</div>
+              <el-form-item>
+                  <el-input type="text"  prefix-icon="el-icon-user"></el-input>
+              </el-form-item>
+              <el-form-item>
+                  <el-input type="password" prefix-icon="el-icon-view"></el-input>
+              </el-form-item>
+              <el-form-item>
+                  <el-button type="primary" class="btn-login">登录</el-button>
+              </el-form-item>
+          </el-form>
+      </div>
+  </div>
 </template>
 
 <script>
-import Welcome from './Welcome.vue'
 export default {
-  name: 'login',
-  components:{Welcome},
+  name: 'login', 
   methods:{
     goWelcome(){
       this.$router.push('/welcome')
@@ -34,12 +44,29 @@ export default {
 }
 </script>
 
-<style scoped>
-a {
-  color: #42b983;
-}
-h3 {
-  color: #42b983;
-  cursor: pointer;
+<style lang="scss">
+.login-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9fcff;
+    width: 100vw;
+    height: 100vh;
+    .modal{
+        width:500px;
+        padding: 50px;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0px 0px 10px 3px #c7c9cb4d;
+        .title{
+            font-size: 50px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-login{
+            width: 100%;
+        }
+    }
 }
 </style>

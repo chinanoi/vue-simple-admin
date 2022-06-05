@@ -12,22 +12,20 @@ const routes = [{
         title: '首页'
     },
     children: [{
-            name: 'welcome',
-            path: '/welcome',
-            meta: {
-                title: '欢迎页'
-            },
-            component: Welcome,
+        name: 'welcome',
+        path: '/welcome',
+        meta: {
+            title: '欢迎页'
         },
-        {
-            name: 'login',
-            path: '/login',
-            meta: {
-                title: '登录'
-            },
-            component: Login
-        }
-    ]
+        component: Welcome,
+    }]
+}, {
+    name: 'login',
+    path: '/login',
+    meta: {
+        title: '登录'
+    },
+    component: Login
 }];
 
 const router = createRouter({

@@ -8,5 +8,7 @@ export default{
 }
 </script>
 
-<style>
+<style lang="scss">
+@import './assets/styles/index.scss';
+@import './assets/styles/reset.css';
 </style>
