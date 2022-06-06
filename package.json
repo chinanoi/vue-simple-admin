@@ -6,10 +6,11 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.0.5",
+    "@element-plus/icons-vue": "^2.0.4",
     "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.53",
     "vite": "^2.3.8",
+    "vue": "^3.0.5",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
   },

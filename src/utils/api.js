@@ -17,7 +17,7 @@ service.interceptors.request.use((req) => {
 
 // 响应拦截
 service.interceptors.response.use((res) => {
-    const { data, code, msg } = res;
+    const { data, code, msg } = res.data;
     if (code === 200) {
         return data;
     }
@@ -28,13 +28,17 @@ service.interceptors.response.use((res) => {
 // 封装请求函数
 function request(options) {
     options.method = options.method || 'get';
-    if (options.method.toLowercase() === 'get') {
+    console.log('options.method', options.method);
+    if (options.method.toLocaleLowerCase() === 'get') {
         options.param = options.data;
     }
+    if (typeof options.mock != 'undefined') {
+        config.mock = options.mock;
+    }
     if (config.env === 'prod') {
-        service.defaults.baseURL = config.baseURL;
+        service.defaults.baseURL = config.baseApi;
     } else {
-        service.defaults.baseURL = config.mock ? config.mockApi : config.baseURL;
+        service.defaults.baseURL = config.mock ? config.mockApi : config.baseApi;
     }
     return service(options);
 }

@@ -6,22 +6,22 @@ const env =
 const EnvConfig = {
     dev: {
         baseApi: '/api',
-        mockApi: ''
+        mockApi: 'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     },
     test: {
-        baseApi: '/test/api',
-        mockApi: ''
+        baseApi: '//test.futurefe.com/api',
+        mockApi: 'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     },
     prod: {
-        baseApi: '/product/api',
-        mockApi: ''
+        baseApi: '//futurefe.com/api',
+        mockApi: 'https://www.fastmock.site/mock/c1c302e8baed9894c48c17e4738c092e/api'
     }
 };
 
 
 export default {
     env: 'dev',
-    mock: 'true',
     namespace: 'VUE_CUSTOM_MANAGER_SYSTEM',
+    mock: false,
     ...EnvConfig[env]
 };

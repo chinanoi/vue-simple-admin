@@ -1,44 +1,72 @@
 <template>
   <div class="login-wrapper">
-      <div class="modal">
-          <el-form>
-              <div class="title">登录</div>
-              <el-form-item>
-                  <el-input type="text"  prefix-icon="el-icon-user"></el-input>
-              </el-form-item>
-              <el-form-item>
-                  <el-input type="password" prefix-icon="el-icon-view"></el-input>
-              </el-form-item>
-              <el-form-item>
-                  <el-button type="primary" class="btn-login">登录</el-button>
-              </el-form-item>
-          </el-form>
-      </div>
+    <div class="modal">
+      <el-form
+        ref="userForm"
+        :model="user"
+        status-icon
+        :rules="rules"
+      >
+        <div class="title">登录</div>
+        <el-form-item prop="userName">
+          <el-input
+            type="text"
+            prefix-icon="el-icon-user"
+            v-model="user.userName"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="userPwd">
+          <el-input
+            type="password"
+            prefix-icon="el-icon-view"
+            v-model="user.userPwd"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            class="btn-login"
+            @click="login"
+          >登录</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'login', 
-  methods:{
-    goWelcome(){
-      this.$router.push('/welcome')
-    },
-    login(){
-        // this.$request({
-        //     url:'/dddd',
-        //     method:'get',
-        //     data:{
-        //         username:'xxx',
-        //         password:'xxx'
-        //     }
-        // }).then((res)=>{
-        //     console.log('res',res)
-        // })
-        this.$storage.setItem('userInfo',{name:'zhangsan'})
-        this.$storage.clearItem('name')
-        const userInfo = this.$storage.getItem('userInfo')
-        console.log('userInfo',userInfo)
+  name: 'login',
+  data () {
+    return {
+      user: {
+        userName: 'admin',
+        userPwd: '123456'
+      },
+      rules: {
+        userName: [
+          {
+            required: true, message: '请输入用户名', trigger: 'blur'
+          }
+        ],
+        userPwd: [
+          {
+            required: true, message: '请输入密码', trigger: 'blur'
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    login () {
+      this.$refs.userForm.validate((valid) => {
+        if (valid) {
+          this.$api.users.login(this.user).then(async (res) => {
+            this.$store.commit('saveUserInfo', res);
+            this.$router.push('/welcome');
+          });
+        }
+      });
     }
   }
 }
